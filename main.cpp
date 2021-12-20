@@ -54,6 +54,12 @@ extern int  processCTFL_A_v1p6Exam();
 // Foundation Level Mobile Application Tester v1.1
 extern int  processFL_MATv1p1Exam();
 
+// Advanced Level Security Tester version GA March 2016
+extern int  processAL_SECv2016Exam();
+
+// Foundation Level Usability Tester version 2018
+extern int processFL_UTv2018Exam();
+
 /*
    Program Requirements
 
@@ -65,7 +71,7 @@ extern int  processFL_MATv1p1Exam();
    1.3) CTFL Sample Exam C v1.2
    1.4) Test Automation Engineer    ----------------[Done]
    1.5) Mobile Application Tester   ----------------[Done]
-   1.6) Security
+   1.6) Security                    ----------------[Done]
    1.7) Gambling Industry Tester Specialist
    1.8) Foundation level usability tester
    1.9) Acceptance
@@ -113,8 +119,7 @@ extern int  processFL_MATv1p1Exam();
 */
 
 
-
-
+// A getAnswer Method with 
 
 
 
@@ -124,6 +129,68 @@ char getAnswer(){
   cout << "?";
   cin >> s;
   return s.at(0);
+}
+
+// return any lowercase letters as uppercase. TODO: use addition to modify char
+char getAnswerAsUppercase(){
+  char answer = getAnswer();
+  
+  switch (answer) {
+    case 'a': return 'A';
+    case 'b': return 'B';
+    case 'c': return 'C';
+    case 'd': return 'D';
+    case 'e': return 'E';
+    case 'f': return 'F';
+    case 'g': return 'G';
+    case 'h': return 'H';
+    case 'i': return 'I';
+    case 'j': return 'J';
+    case 'k': return 'K';
+    case 'l': return 'L';
+    case 'm': return 'M';
+    case 'n': return 'N';
+    case 'o': return 'O';
+    case 'p': return 'P';
+    case 'q': return 'Q';
+    case 'r': return 'R';
+    case 's': return 'S';
+    case 't': return 'T';
+    case 'u': return 'U';
+    case 'v': return 'V';
+    case 'w': return 'W';
+    case 'x': return 'X';
+    case 'y': return 'Y';
+    case 'z': return 'Z';
+  }
+  return answer;
+}
+
+char getValidatedAnswerAsUppercase(int numberOfValidResponses){
+// EG: if 4, only allow an A,B,C or D answer, if 5, only allow A,B,C,D or E.
+  char answer = getAnswerAsUppercase();
+
+  if (numberOfValidResponses == 4) {
+    // While answer Not (A or B or C or D)
+    while ( !((answer == 'A') || (answer == 'B') || (answer == 'C') || (answer == 'D'))){
+     cout << "ABCD" ;
+      answer = getAnswerAsUppercase();
+    } 
+    
+  }
+  
+    // While answer Not (A or B or C or D)
+  else if (numberOfValidResponses == 5){
+    while ( !((answer == 'A') || (answer == 'B') || (answer == 'C') || (answer == 'D')|| (answer == 'E'))){
+     cout << "ABCDE" ;
+      answer = getAnswerAsUppercase();
+    } 
+  
+  }
+  else {
+  cout << "XXXXXXXXXXXXXXXXXXX Attempting to getValidatedAnswerAsUppercase with wrong number of valid responses. Only 4 (ABCD) or 5(ABCDE) currently implemented" << endl;
+  }
+  return answer;
 }
 
 
@@ -202,7 +269,7 @@ int processSampleMultiAnswerQuestion(){
 void printShortLicenceInfo(){
 // print same licencing info for startup and for licencing page.
   cout << "STSQR-ISTQBHC : SoftwareTesterScott QuizRunner - ISTQB Hardcoded. A program to assist students allowing sitting ISTQB sample exams electronically." << endl;
-  cout << "Version 1.1.0 Released 5Dec2021:  Copyright (C) 2021 SoftwareTesterScott  SoftwareTesterScott@gmail.com" << endl;
+  cout << "Version 1.2.0 Released 5Dec2021:  Copyright (C) 2021 SoftwareTesterScott  SoftwareTesterScott@gmail.com" << endl;
   cout << "Software licenced under GPL v3 with an additional restriction any modified code must maintain attribution of sources of Quizes to ISTQB" << endl; 
 
   cout << "    This program comes with ABSOLUTELY NO WARRANTY; " << endl;
@@ -264,6 +331,8 @@ void printMainMenu(){
   cout << "E CTFL Exam C (not yet implemented)" << endl;
   cout << "F AL-TAE (Advanced Level - Test Automation Engineer)" << endl;
   cout << "G FL-MAT (Foundation Level - Mobile Application Tester)" << endl;
+  cout << "H AL-SEC (Advanced Level - Security Tester)" << endl;
+  cout << "I FL-UT (Foundation Level - Usability Tester)" << endl;
   
   cout << "Q Quit "<< endl;
   
@@ -311,7 +380,8 @@ int main(int argc, char* argv[]) {
     else if ((input == 'C') || (input == 'c')) processCTFL_A_v1p6Exam();
     else if ((input == 'F') || (input == 'f')) processAL_TAEv2016Exam();
     else if ((input == 'G') || (input == 'g')) processFL_MATv1p1Exam();
-
+    else if ((input == 'H') || (input == 'h')) processAL_SECv2016Exam();
+    else if ((input == 'I') || (input == 'i')) processFL_UTv2018Exam();
     
     else if ((input == 'M') || (input == 'm') || (input =='?')) printMainMenu();
     else if ((input == 'Q') || (input == 'q')) cout << "Quitting" << endl;
